@@ -54,7 +54,7 @@ def choose_path(elf: Base, path: str):
 result = 0
 
 
-with open("input2.txt", "r") as f:
+with open("task_input.txt", "r") as f:
     task_input = f.read().split("\n")
     for i in task_input:
         elf, path = i.split(" ")
