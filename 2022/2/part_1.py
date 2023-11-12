@@ -32,7 +32,7 @@ def solve(elf, me):
 
 
 if __name__ == '__main__':
-    with open("input2.txt", "r") as f:
+    with open("task_input.txt", "r") as f:
         task_input = f.read().split("\n")
 result = 0
 for i in task_input:
