@@ -7,7 +7,6 @@ def parse_line(_line):
     for char in _line:
         if char.isnumeric():
             return int(char)
-    return ""
 
 
 result = 0
