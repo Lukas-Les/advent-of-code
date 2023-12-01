@@ -4,45 +4,33 @@ def load_input():
 
 
 words_to_int = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-numbers = []
+shortest_word = min([len(i) for i in words_to_int])
+result = 0
 
 
-def parse_line(line, rev=False):
+def str_to_int(cache):
+    for i in words_to_int:
+        if i in cache:
+            return words_to_int.index(i)
+
+
+def parse_line(_line: str, rev: bool = False):
     cache = ""
-    for char in line:
+    if rev:
+        _line = _line[::-1]
+    for char in _line:
         if char.isnumeric():
             return int(char)
         elif char.isalpha():
             cache += char
-        if cache in words_to_int:
-            return words_to_int.index(cache)
-        for word in words_to_int:
-            if word in cache:
-                return words_to_int.index(word)
-    return ""
-
-
-def parse_line_reverse(line):
-    cache = ""
-    for char in line[::-1]:
-        if char.isnumeric():
-            return int(char)
-        elif char.isalpha():
-            cache += char
-        temp_cache = cache[::-1]
-        if temp_cache in words_to_int:
-            return words_to_int.index(temp_cache)
-        for word in words_to_int:
-            if word in temp_cache:
-                return words_to_int.index(word)
-    return ""
+        if len(cache) >= shortest_word:
+            num = str_to_int(cache if not rev else cache[::-1])
+            if num:
+                return num
 
 
 for line in load_input().split("\n"):
-    line_res = f"{parse_line(line)}{parse_line_reverse(line)}"
-    numbers.append(line_res)
+    line_res = f"{parse_line(line)}{parse_line(line, rev=True)}"
+    result += int(line_res)
 
-numbers = [int(x) for x in numbers]
-print(sum(numbers))
-
-
+print(result)
