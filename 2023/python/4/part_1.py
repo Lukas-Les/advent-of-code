@@ -36,8 +36,7 @@ def handler():
             if lucky_number in my_numbers:
                 winners.append(lucky_number)
         if winners:
-            s = calculate_score(len(winners))
-            result = result + s
+            result += calculate_score(len(winners))
     return result
 
 
