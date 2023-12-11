@@ -41,23 +41,22 @@ def handler():
         for x in range(space_width):
             if space[y][x] == GALAXY:
                 galaxies[(x, y)] = []
+    galaxies_keys = list(galaxies.keys())
+    for i in range(len(galaxies) - 1):
+        galaxy_id = galaxies_keys[i]
+        for j in range(1 + i, len(galaxies)):
+            next_galaxy_id = galaxies_keys[j]
+            g1_x = galaxy_id[0]
+            g1_y = galaxy_id[1]
+            g2_x = next_galaxy_id[0]
+            g2_y = next_galaxy_id[1]
+            galaxies[galaxies_keys[i]].append((next_galaxy_id, abs(g2_x - g1_x) + abs(g2_y - g1_y)))
+    result = 0
+    for i in galaxies.values():
+        for j in i:
+            result += j[1]
 
-    for i in range(len(galaxies)):
-        for j in range(1, len(galaxies)):
-            g1_x = list(galaxies.keys())[i][0]
-            g1_y = list(galaxies.keys())[i][1]
-            g2_x = list(galaxies.keys())[j][0]
-            g2_y = list(galaxies.keys())[j][1]
-            if g1_y == 0:
-                g1_y = 1
-            if g2_y == 0:
-                g2_y = 1
-            a = abs(g2_x - g1_x)
-            b = abs(g2_y - g1_y)
-            r = a + b
-            a = 1
-
-    return space
+    return result
 
 
 if __name__ == '__main__':
