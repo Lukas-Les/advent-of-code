@@ -1,0 +1,1 @@
+/mnt/e/github/advent-of-code/2024/rust/target/debug/librust.rlib: /mnt/e/github/advent-of-code/2024/rust/src/day1/mod.rs /mnt/e/github/advent-of-code/2024/rust/src/day1/part1.rs /mnt/e/github/advent-of-code/2024/rust/src/lib.rs
