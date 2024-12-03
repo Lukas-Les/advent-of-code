@@ -10,22 +10,29 @@ fn solve() -> () {
         .iter()
         .for_each(
             |s| {
-                let nums: Vec<&str> = s.split("   ").collect();
+                let nums: Vec<&str> = s.split_whitespace().collect();
                 left_side.push(nums[0].parse().unwrap());
                 right_side.push(nums[1].parse().unwrap());
             }
         );
     let mut result = 0;
     while !left_side.is_empty() {
-        let min_left = left_side.iter().min().cloned(); 
-        let min_right = right_side.iter().min().cloned(); 
+        let (min_left_index, &min_left) = left_side
+            .iter()
+            .enumerate()
+            .min_by_key(|&(_, &val)| val)
+            .unwrap();
+        left_side.swap_remove(min_left_index);
 
-        left_side.retain(|&x| x != min_left);
-        right_side.retain(|&x| x != min_right);
+        let (min_right_index, &min_right) = right_side
+            .iter()
+            .enumerate()
+            .min_by_key(|&(_, &val)| val)
+            .unwrap();
+        right_side.swap_remove(min_right_index);
 
         let diff = (min_left - min_right).abs();
         result += diff;
-        println!("{}", result);
     }
     
     println!("{}", result);
