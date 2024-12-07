@@ -16,25 +16,13 @@ fn solve() -> () {
             }
         );
     let mut result = 0;
-    while !left_side.is_empty() {
-        let (min_left_index, &min_left) = left_side
-            .iter()
-            .enumerate()
-            .min_by_key(|&(_, &val)| val)
-            .unwrap();
-        left_side.swap_remove(min_left_index);
-
-        let (min_right_index, &min_right) = right_side
-            .iter()
-            .enumerate()
-            .min_by_key(|&(_, &val)| val)
-            .unwrap();
-        right_side.swap_remove(min_right_index);
-
-        let diff = (min_left - min_right).abs();
-        result += diff;
+    left_side.sort();
+    right_side.sort();
+    for i in 0..left_side.len() {
+        let a = left_side[i];
+        let b = right_side[i];
+        result += (a - b).abs();
     }
-    
     println!("{}", result);
 }
 
