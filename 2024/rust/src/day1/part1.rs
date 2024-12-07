@@ -1,20 +1,7 @@
-use std::fs;
+use crate::day1::load_lists;
 
-
-fn solve() -> () {
-    let input: String = fs::read_to_string("src/day1/input.txt").expect("failed to read");
-    let lines: Vec<String> = input.lines().map(String::from).collect();
-    let mut left_side: Vec<i32> = Vec::new();
-    let mut right_side: Vec<i32> = Vec::new();
-    lines
-        .iter()
-        .for_each(
-            |s| {
-                let nums: Vec<&str> = s.split_whitespace().collect();
-                left_side.push(nums[0].parse().unwrap());
-                right_side.push(nums[1].parse().unwrap());
-            }
-        );
+fn solve() -> i32 {
+    let (mut left_side, mut right_side) = load_lists("src/day1/input1.txt");
     let mut result = 0;
     left_side.sort();
     right_side.sort();
@@ -24,6 +11,7 @@ fn solve() -> () {
         result += (a - b).abs();
     }
     println!("{}", result);
+    result
 }
 
 #[cfg(test)]
@@ -33,6 +21,6 @@ mod test {
 
     #[test]
     fn test_solve() {
-        solve();
+        assert_eq!(solve(), 2000468);
     }
 }
