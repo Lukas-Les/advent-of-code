@@ -1,4 +1,5 @@
 mod part1;
+mod part2;
 
 use std::fs;
 

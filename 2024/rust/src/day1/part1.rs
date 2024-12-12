@@ -20,7 +20,7 @@ mod test {
     use super::solve;
 
     #[test]
-    fn test_solve() {
+    fn test_d1p1() {
         assert_eq!(solve(), 2000468);
     }
 }
